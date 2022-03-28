@@ -27,9 +27,11 @@ class AppRunner(private val subjectRepository: SubjectRepository,
         val subj1: Subject = subjectRepository.save(Subject(0, "Software Engineering", "Apply key aspects of software engineering processes for the development of a complex software system"))
         val subj2: Subject = subjectRepository.save(Subject(0, "Distributed System", "Explore recent advances in distributed computing systems"))
         val subj3: Subject = subjectRepository.save(Subject(0, "Business Analysis and Optimization", "understand the Internal and external factors that impact the business strategy"))
+
         val branch1: Branch = Branch(0, "Computer Science and Engineering", "CSE", "CSE department offers courses under ambitious curricula in computer science and computer engineering..")
         branch1.addSubject(subj1)
         branch1.addSubject(subj2)
+        branch1.branchData = BranchData("Classic office", 100, "A pretty good office")
         val createdBranch1: Branch = branchRepository.save(branch1)
         logger.info("Created first branch {}", createdBranch1)
 

@@ -2,7 +2,12 @@ databaseChangeLog:
   - changeSet:
       id: 1
       author: nkonev
-
       changes:
         - sqlFile:
             path: /db/changelog/1648380286__init.sql
+  - changeSet:
+      id: 2
+      author: nkonev
+      changes:
+        - sqlFile:
+            path: /db/changelog/1648459518__branch_data_jsonb.sql

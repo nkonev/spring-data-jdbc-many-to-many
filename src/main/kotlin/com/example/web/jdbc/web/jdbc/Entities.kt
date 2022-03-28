@@ -17,10 +17,13 @@ data class Branch(
     @Column("branch_short_name") var branchShortName: String,
     var description: String? = null,
     @MappedCollection(idColumn = "branch_id")
-    private val subjects: MutableSet<SubjectRef> = HashSet()
+    private val subjects: MutableSet<SubjectRef> = HashSet(),
+    var branchData: BranchData? = null
 ) {
 
     fun addSubject(subject: Subject) {
         subjects.add(SubjectRef(subject.subjectId.toLong()))
     }
 }
+
+data class BranchData(val buildingType: String?, var rating: Int, var comment: String?)

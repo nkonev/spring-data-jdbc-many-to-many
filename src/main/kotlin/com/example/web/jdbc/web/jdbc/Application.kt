@@ -41,6 +41,9 @@ class AppRunner(private val subjectRepository: SubjectRepository,
         val createdBranch2: Branch = branchRepository.save(branch2)
         logger.info("Created second branch {}", createdBranch2)
 
+        val findById = branchRepository.findById(createdBranch1.branchId)
+        logger.info("Found --- first branch {}", findById)
+
         logger.info("Deleting first branch {}", createdBranch1)
         branchRepository.delete(createdBranch1)
         logger.info("Searching for first branch {}", branchRepository.existsById(createdBranch1.branchId))

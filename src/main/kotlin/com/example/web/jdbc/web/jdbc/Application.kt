@@ -6,7 +6,6 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 
 @SpringBootApplication
@@ -72,7 +71,22 @@ class AppRunner(
         foundPersons.forEach { logger.info("Found Person {}", it) }
 
         // https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates
-        val orders = orderRepository.findAll();
+//        val orders = orderRepository.findAll()
+//        orders.forEach { logger.info("Found order {}", it) }
+
+        val order = PurchaseOrder(0, "Kutaisi")
+        order.addItem(4, "Captain Future Comet Lego set")
+        order.addItem(2, "Cute blue angler fish plush toy")
+        val savedOrder = orderRepository.save(order)
+
+        val orders = orderRepository.findAll()
         orders.forEach { logger.info("Found order {}", it) }
+
+        logger.info("=== deleting order with its items ===")
+        orderRepository.delete(savedOrder)
+
+        val afterDeleteOrders = orderRepository.findAll()
+        afterDeleteOrders.forEach { logger.info("Found order after delete {}", it) }
+
     }
 }

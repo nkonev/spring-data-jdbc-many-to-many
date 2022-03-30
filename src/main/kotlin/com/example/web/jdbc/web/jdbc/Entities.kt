@@ -31,6 +31,9 @@ data class BranchData(val buildingType: String?, var rating: Int, var comment: S
 data class Person (val id: Long, var firstName: String, var lastName: String)
 
 data class OrderItem (
+    @Id
+    @Column("order_item_id")
+    val id: Long,
     var quantity: Int = 0,
     var product: String
 )
@@ -43,6 +46,6 @@ data class PurchaseOrder (
     val items: MutableSet<OrderItem> = HashSet()
 ) {
     fun addItem(quantity: Int, product: String) {
-        items.add(OrderItem(quantity, product))
+        items.add(OrderItem(0, quantity, product))
     }
 }

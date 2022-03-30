@@ -9,10 +9,10 @@ import org.springframework.data.relational.core.mapping.Table
 data class Subject(@Id val subjectId: Int, var subjectDesc: String, var subjectName: String)
 
 @Table("branch_subject")
-data class SubjectRef(val subjectId: Long)
+data class SubjectRef(val subjectId: Int)
 
 data class Branch(
-    @Id val branchId: Long,
+    @Id val branchId: Int,
     var branchName: String,
     @Column("branch_short_name") var branchShortName: String,
     var description: String? = null,
@@ -22,7 +22,7 @@ data class Branch(
 ) {
 
     fun addSubject(subject: Subject) {
-        subjects.add(SubjectRef(subject.subjectId.toLong()))
+        subjects.add(SubjectRef(subject.subjectId))
     }
 }
 

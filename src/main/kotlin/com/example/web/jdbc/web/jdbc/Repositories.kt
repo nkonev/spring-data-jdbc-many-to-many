@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-interface SubjectRepository : CrudRepository<Subject, Long>
+interface SubjectRepository : CrudRepository<Subject, Int>
 
 @Repository
-interface BranchRepository : CrudRepository<Branch, Long>
+interface BranchRepository : CrudRepository<Branch, Int>
 
 @Repository
 interface PersonRepository : CrudRepository<Person, Long> {

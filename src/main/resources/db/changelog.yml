@@ -11,3 +11,15 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: /db/changelog/1648459518__branch_data_jsonb.sql
+  - changeSet:
+      id: 3
+      author: nkonev
+      changes:
+        - sqlFile:
+            path: /db/changelog/1648633719__person.sql
+  - changeSet:
+      id: 4
+      author: nkonev
+      changes:
+        - sqlFile:
+            path: /db/changelog/1648633720__person_doe.sql

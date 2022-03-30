@@ -5,6 +5,8 @@ import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 
 @SpringBootApplication
@@ -15,8 +17,11 @@ fun main(args: Array<String>) {
 }
 
 @Component
-class AppRunner(private val subjectRepository: SubjectRepository,
-           private val branchRepository: BranchRepository) : ApplicationRunner {
+class AppRunner(
+        private val subjectRepository: SubjectRepository,
+        private val branchRepository: BranchRepository,
+        private val personRepository: PersonRepository
+) : ApplicationRunner {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -59,5 +64,9 @@ class AppRunner(private val subjectRepository: SubjectRepository,
         logger.info("Checking if subjects still presents")
         val allSubjects = subjectRepository.findAll()
         allSubjects.forEach { logger.info("Found subject {}", it) }
+
+        // https://docs.spring.io/spring-data/jdbc/docs/current/reference/html/#jdbc.query-methods
+        val foundPersons = personRepository.findByLastName("Doe", PageRequest.of(1, 10))
+        foundPersons.forEach { logger.info("Found Person {}", it) }
     }
 }

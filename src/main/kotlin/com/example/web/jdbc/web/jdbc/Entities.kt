@@ -27,3 +27,5 @@ data class Branch(
 }
 
 data class BranchData(val buildingType: String?, var rating: Int, var comment: String?)
+
+data class Person (val id: Long, var firstName: String, var lastName: String)

@@ -20,7 +20,8 @@ fun main(args: Array<String>) {
 class AppRunner(
         private val subjectRepository: SubjectRepository,
         private val branchRepository: BranchRepository,
-        private val personRepository: PersonRepository
+        private val personRepository: PersonRepository,
+        private val orderRepository: OrderRepository,
 ) : ApplicationRunner {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
@@ -65,8 +66,13 @@ class AppRunner(
         val allSubjects = subjectRepository.findAll()
         allSubjects.forEach { logger.info("Found subject {}", it) }
 
+
         // https://docs.spring.io/spring-data/jdbc/docs/current/reference/html/#jdbc.query-methods
         val foundPersons = personRepository.findByLastName("Doe", PageRequest.of(1, 10))
         foundPersons.forEach { logger.info("Found Person {}", it) }
+
+        // https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates
+        val orders = orderRepository.findAll();
+        orders.forEach { logger.info("Found order {}", it) }
     }
 }

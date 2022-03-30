@@ -23,3 +23,9 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: /db/changelog/1648633720__person_doe.sql
+  - changeSet:
+      id: 5
+      author: nkonev
+      changes:
+        - sqlFile:
+            path: /db/changelog/1648636121__order.sql

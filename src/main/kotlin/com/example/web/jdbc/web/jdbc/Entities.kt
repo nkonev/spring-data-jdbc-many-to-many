@@ -29,3 +29,20 @@ data class Branch(
 data class BranchData(val buildingType: String?, var rating: Int, var comment: String?)
 
 data class Person (val id: Long, var firstName: String, var lastName: String)
+
+data class OrderItem (
+    var quantity: Int = 0,
+    var product: String
+)
+
+data class PurchaseOrder (
+    @Id
+    val id: Long,
+    var shippingAddress: String,
+    @MappedCollection(idColumn = "purchase_order_id")
+    val items: MutableSet<OrderItem> = HashSet()
+) {
+    fun addItem(quantity: Int, product: String) {
+        items.add(OrderItem(quantity, product))
+    }
+}
